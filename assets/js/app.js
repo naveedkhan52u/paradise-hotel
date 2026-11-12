@@ -175,11 +175,10 @@
     /**
      * INITIALIZE PAGE ON LOAD
      */
-    document.addEventListener("DOMContentLoaded", () => {
-      renderRooms();
-      renderMenu();
-      renderCart();
-    });
+    // Shared components are inserted before this script loads, so initialize immediately.
+    renderRooms();
+    renderMenu();
+    renderCart();
 
     /**
      * FORMAT CURRENCY (PKR)
