@@ -17,7 +17,8 @@
         <a href="contact.html" class="text-alpine-900 hover:text-amberwarm-600 py-2">Contact</a>
       </nav>
       <div class="flex items-center gap-3">
-        <button type="button" onclick="if (typeof openCartDrawer === 'function') { openCartDrawer(); } else { window.location.href='services.html#menu'; }" aria-label="Open Cart" class="hidden lg:inline-flex items-center gap-2 bg-alpine-900 hover:bg-alpine-800 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-sm">
+        <button type="button" onclick="if (typeof openCartDrawer === 'function') { openCartDrawer(); } else { window.location.href='services.html#menu'; }" aria-label="Open Cart" id="navCartBtn" class="hidden lg:inline-flex items-center gap-2 bg-alpine-900 hover:bg-alpine-800 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-sm">
+          <svg id="navCartIcon" class="w-5 h-5 text-amberwarm-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
           Cart <span id="cartBadge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-extrabold bg-amberwarm-400 text-alpine-950 rounded-full">0</span>
         </button>
         <button id="mobileNavToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNavMenu" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-sand-100 hover:bg-sand-200 border border-sand-200 text-alpine-950">
