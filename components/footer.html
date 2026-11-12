@@ -3,7 +3,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-12 border-b border-white/10">
         <!-- Brand Image Logo & Social Media Icons -->
         <div>
-          <a href="#home" class="inline-block mb-4 focus:outline-none">
+          <a href="index.html" class="inline-block mb-4 focus:outline-none">
             <img
               src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='58' viewBox='0 0 250 58'%3E%3Crect x='1' y='1' width='248' height='56' rx='14' fill='%231b312c'/%3E%3Crect x='4' y='4' width='242' height='50' rx='11' fill='none' stroke='%23f5b942' stroke-opacity='0.55' stroke-width='1.2'/%3E%3Cpath d='M24 38 L34 19 L43 32 L51 22 L61 38 Z' fill='%23f5b942'/%3E%3Ccircle cx='50' cy='15' r='3.5' fill='%23fff3d1'/%3E%3Ctext x='72' y='28' font-family='Georgia, serif' font-weight='bold' font-size='18' fill='%23ffffff' letter-spacing='0.8'%3EPARADISE GRILL%3C/text%3E%3Ctext x='73' y='43' font-family='Arial, sans-serif' font-weight='bold' font-size='8.5' fill='%23f5b942' letter-spacing='2.4'%3ESONIKOT %E2%80%A2 GILGIT%3C/text%3E%3C/svg%3E"
               alt="Paradise Grill — Sonikot, Gilgit"
@@ -101,10 +101,10 @@
             Need instant assistance with airport pick-up, group stays, or custom catering in Gilgit?
           </p>
           <div class="flex flex-wrap gap-3">
-            <a href="#rooms" class="px-4 py-2.5 rounded-xl bg-amberwarm-500 hover:bg-amberwarm-400 text-alpine-950 font-semibold text-sm transition-colors">
+            <a href="services.html#rooms" class="px-4 py-2.5 rounded-xl bg-amberwarm-500 hover:bg-amberwarm-400 text-alpine-950 font-semibold text-sm transition-colors">
               Book a Room
             </a>
-            <button onclick="openCartDrawer()" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors">
+            <button onclick="if (typeof openCartDrawer === 'function') { openCartDrawer(); } else { window.location.href='services.html#menu'; }" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors">
               View Food Cart
             </button>
           </div>
