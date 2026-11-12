@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Paradise Grill Hotel | Gilgit</title>
+
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            alpine: {
+              950: '#0b1412',
+              900: '#12201d',
+              800: '#1b312c',
+              700: '#26453e',
+            },
+            amberwarm: {
+              400: '#f5b942',
+              500: '#d99b26',
+              600: '#b87d14',
+            },
+            sand: {
+              50: '#faf9f6',
+              100: '#f3f0ea',
+              200: '#e6dfd3',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Utility Styles for Scrollbar & Animations -->
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #faf9f6;
+      color: #12201d;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f3f0ea;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #26453e;
+      border-radius: 9999px;
+    }
+    /* Modal backdrop transition */
+    .modal-enter {
+      animation: fadeInScale 0.22s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amberwarm-500 selection:text-white overflow-x-hidden">
+<div id="site-header"></div>
+<main class="bg-sand-50"><section class="py-16 sm:py-20 px-4"><div class="max-w-5xl mx-auto"><div class="text-center mb-10"><span class="text-amberwarm-600 font-bold uppercase tracking-[0.2em] text-xs">Get in touch</span><h1 class="font-display text-3xl sm:text-4xl font-bold text-alpine-950 mt-2">Contact Paradise Grill</h1><p class="text-alpine-800/80 mt-3 max-w-2xl mx-auto">For hotel reservations, dining enquiries, and other information, contact our team or visit us in Gilgit.</p></div><div class="grid md:grid-cols-2 gap-6"><div class="bg-white rounded-3xl border border-sand-200 p-7 shadow-sm"><h2 class="font-display text-xl font-bold text-alpine-950 mb-4">Visit Us</h2><p class="text-sm leading-7 text-alpine-800">River Road, Sonikot, Gilgit, Gilgit-Baltistan.</p><p class="text-xs text-alpine-700 mt-3">Confirm the exact address and map location with the hotel before publishing.</p></div><div class="bg-white rounded-3xl border border-sand-200 p-7 shadow-sm"><h2 class="font-display text-xl font-bold text-alpine-950 mb-4">Reservations &amp; Enquiries</h2><p class="text-sm leading-7 text-alpine-800">Official phone and email details will be added after confirmation from the hotel.</p><a href="services.html" class="inline-flex mt-5 px-5 py-3 rounded-xl bg-alpine-900 hover:bg-alpine-800 text-white text-sm font-bold">View Hotel &amp; Restaurant Services</a></div></div></div></section></main>
+<div id="site-footer"></div>
+<script src="./assets/js/layout.js"></script>
+</body>
+</html>
