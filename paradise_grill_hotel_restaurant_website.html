@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paradise Grill | Luxury Hotel & Fine Dining — Sonikot, Gilgit</title>
+
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            alpine: {
+              950: '#0b1412',
+              900: '#12201d',
+              800: '#1b312c',
+              700: '#26453e',
+            },
+            amberwarm: {
+              400: '#f5b942',
+              500: '#d99b26',
+              600: '#b87d14',
+            },
+            sand: {
+              50: '#faf9f6',
+              100: '#f3f0ea',
+              200: '#e6dfd3',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Utility Styles for Scrollbar & Animations -->
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #faf9f6;
+      color: #12201d;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f3f0ea;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #26453e;
+      border-radius: 9999px;
+    }
+    /* Modal backdrop transition */
+    .modal-enter {
+      animation: fadeInScale 0.22s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amberwarm-500 selection:text-white overflow-x-hidden">
+
+  <!-- =====================================================================
+       STICKY NAVIGATION BAR (Desktop + Tablet/Mobile Drawer)
+  ====================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md text-alpine-950 border-b border-sand-200 shadow-sm">
+    <div class="max-w-[1440px] mx-auto px-3 sm:px-5 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Image Logo Only (No separate icon before logo) -->
+        <a href="#home" class="flex items-center focus:outline-none group">
+          <img
+            src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='58' viewBox='0 0 250 58'%3E%3Crect x='1' y='1' width='248' height='56' rx='14' fill='%2312201d'/%3E%3Crect x='4' y='4' width='242' height='50' rx='11' fill='none' stroke='%23d99b26' stroke-opacity='0.45' stroke-width='1.2'/%3E%3Cpath d='M24 38 L34 19 L43 32 L51 22 L61 38 Z' fill='%23f5b942'/%3E%3Ccircle cx='50' cy='15' r='3.5' fill='%23fff3d1'/%3E%3Ctext x='72' y='28' font-family='Georgia, serif' font-weight='bold' font-size='18' fill='%23ffffff' letter-spacing='0.8'%3EPARADISE GRILL%3C/text%3E%3Ctext x='73' y='43' font-family='Arial, sans-serif' font-weight='bold' font-size='8.5' fill='%23f5b942' letter-spacing='2.4'%3ESONIKOT %E2%80%A2 GILGIT%3C/text%3E%3C/svg%3E"
+            alt="Paradise Grill — Sonikot, Gilgit"
+            class="h-12 sm:h-13 w-auto object-contain rounded-xl shadow-sm group-hover:opacity-95 transition-opacity"
+          />
+        </a>
+
+        <!-- Desktop Navigation Links (Hidden on Tablet & Mobile < lg) -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+          <a href="#home" class="text-alpine-900 hover:text-amberwarm-600 transition-colors py-2">Home</a>
+          <a href="#rooms" class="text-alpine-900 hover:text-amberwarm-600 transition-colors py-2">Luxury Rooms</a>
+          <a href="#menu" class="text-alpine-900 hover:text-amberwarm-600 transition-colors py-2">Grill &amp; Dining Menu</a>
+          <a href="#contact" class="text-alpine-900 hover:text-amberwarm-600 transition-colors py-2">Location &amp; Contact</a>
+        </nav>
+
+        <!-- Right Actions: Cart Button + Mobile/Tablet Menu Button -->
+        <div class="flex items-center gap-2.5 sm:gap-3.5">
+          <!-- Cart Button (Dynamically changes background color when items are added) -->
+          <button
+            id="navCartBtn"
+            onclick="openCartDrawer()"
+            aria-label="Open Food Order Cart"
+            class="relative inline-flex items-center gap-2 bg-alpine-900 hover:bg-alpine-800 text-white border border-alpine-900/10 px-3.5 sm:px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-sm active:scale-95"
+          >
+            <svg id="navCartIcon" class="w-5 h-5 text-amberwarm-400 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <span class="hidden sm:inline">Cart</span>
+            <span
+              id="cartBadge"
+              class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-extrabold bg-amberwarm-400 text-alpine-950 rounded-full transition-transform"
+            >
+              0
+            </span>
+          </button>
+
+          <!-- Tablet & Mobile Hamburger Menu Button (Visible below lg breakpoint) -->
+          <button
+            id="mobileMenuBtn"
+            onclick="toggleMobileMenu()"
+            aria-label="Toggle Navigation Menu"
+            aria-expanded="false"
+            class="lg:hidden inline-flex items-center justify-center p-2.5 rounded-xl bg-sand-100 hover:bg-sand-200 text-alpine-950 border border-sand-200 transition-colors focus:outline-none"
+          >
+            <svg id="menuOpenIcon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menuCloseIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile & Tablet Dropdown Navigation Menu -->
+    <div id="mobileMenuDrawer" class="hidden lg:hidden bg-white border-t border-sand-200 px-3 sm:px-5 pt-3 pb-6 space-y-1.5 shadow-xl">
+      <a href="#home" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-semibold text-alpine-950 hover:bg-sand-100 hover:text-amberwarm-600 transition-colors">
+        Home
+      </a>
+      <a href="#rooms" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-semibold text-alpine-950 hover:bg-sand-100 hover:text-amberwarm-600 transition-colors">
+        Luxury Rooms
+      </a>
+      <a href="#menu" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-semibold text-alpine-950 hover:bg-sand-100 hover:text-amberwarm-600 transition-colors">
+        Grill &amp; Dining Menu
+      </a>
+      <a href="#contact" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-semibold text-alpine-950 hover:bg-sand-100 hover:text-amberwarm-600 transition-colors">
+        Location &amp; Contact
+      </a>
+      <div class="pt-3 mt-2 border-t border-sand-200 flex items-center justify-between px-4 text-xs text-alpine-700">
+        <span>River Road, Sonikot, Gilgit</span>
+        <span class="text-amberwarm-600 font-bold">2 mins from Airport</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       CHARMING BRIGHT DAYLIGHT HERO SECTION WITH SEARCH BAR
+  ====================================================================== -->
+  <section id="home" class="relative min-h-[82vh] flex items-center justify-center bg-gradient-to-br from-[#fffdf8] via-[#fdf6e7] to-[#eef6f2] text-alpine-950 overflow-hidden border-b border-sand-200">
+    <!-- Sunlit Alpine Resort Background Image with Bright Luminous Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1920&q=80"
+        onerror="this.src='https://placehold.co/1920x1080/fdf6e7/12201d?text=Paradise+Grill+Gilgit'"
+        alt="Sunlit Paradise Grill Resort & Terrace in Gilgit"
+        class="w-full h-full object-cover object-center opacity-30"
+      />
+      <!-- Soft Warm Ivory & Sunlit Mist Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#fffdf9]/85 via-[#fcf7ec]/75 to-[#faf9f6]/95"></div>
+      <!-- Decorative Sunlit Glow Orbs -->
+      <div class="absolute -top-24 left-1/4 w-96 h-96 bg-amberwarm-400/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-400/15 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-[1440px] w-full mx-auto px-3 sm:px-5 lg:px-8 py-16 sm:py-24 text-center">
+      <!-- Charming Daylight Location Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-amberwarm-500/30 text-alpine-900 text-xs sm:text-sm font-bold shadow-sm mb-6">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>River Road, Sonikot, Gilgit — Just 2 Mins from Gilgit Airport</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-alpine-950 leading-[1.12] max-w-4xl mx-auto mb-6">
+        Sunlit Riverside Luxury &amp; Signature Flame Dining at <span class="text-amberwarm-600 italic">Paradise Grill</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-alpine-800/90 leading-relaxed mb-10 font-medium">
+        Breathe in the crisp Karakoram mountain air along the Gilgit River. Book scenic luxury suites or order sizzling charcoal-grilled specialties directly via WhatsApp.
+      </p>
+
+      <!-- Interactive Unified Search Bar -->
+      <div class="max-w-3xl mx-auto bg-white p-2.5 sm:p-3 rounded-2xl shadow-xl shadow-alpine-950/10 border border-amberwarm-500/25 text-alpine-950">
+        <form onsubmit="handleHeroSearch(event)" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+          <!-- Category Selector -->
+          <div class="relative sm:w-48 shrink-0">
+            <select
+              id="heroSearchCategory"
+              aria-label="Search Category"
+              class="w-full h-12 pl-4 pr-8 rounded-xl bg-sand-100 text-alpine-950 font-bold text-sm border border-sand-200 focus:outline-none focus:ring-2 focus:ring-amberwarm-500 cursor-pointer"
+            >
+              <option value="all">All (Rooms &amp; Food)</option>
+              <option value="rooms">Luxury Rooms</option>
+              <option value="menu">Food Menu</option>
+            </select>
+          </div>
+
+          <!-- Search Input -->
+          <div class="relative flex-1">
+            <svg class="w-5 h-5 text-amberwarm-600 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input
+              type="text"
+              id="heroSearchInput"
+              oninput="liveFilterContent()"
+              placeholder="Search river view suite, mutton karahi, trout grill..."
+              class="w-full h-12 pl-11 pr-4 rounded-xl bg-sand-50 focus:bg-white text-alpine-950 placeholder-alpine-700/60 text-sm sm:text-base border border-sand-200 focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+            />
+          </div>
+
+          <!-- Vibrant Search CTA Button -->
+          <button
+            type="submit"
+            class="h-12 px-8 rounded-xl bg-gradient-to-r from-amberwarm-500 to-amberwarm-600 hover:from-amberwarm-400 hover:to-amberwarm-500 text-alpine-950 font-extrabold text-sm sm:text-base transition-all shadow-md flex items-center justify-center gap-2 shrink-0 active:scale-95"
+          >
+            <span>Explore Now</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Quick Charm Feature Pills -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs sm:text-sm font-semibold text-alpine-900">
+        <div class="flex items-center gap-2 bg-white/85 px-4 py-2 rounded-full border border-sand-200 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+          <span>2 Mins from Gilgit Airport</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/85 px-4 py-2 rounded-full border border-sand-200 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-amberwarm-500"></span>
+          <span>Panoramic Gilgit River Views</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/85 px-4 py-2 rounded-full border border-sand-200 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+          <span>Instant WhatsApp Booking &amp; Delivery</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       ROOMS SECTION (6 Rooms in a 3-Column Grid: 3 in Row 1, 3 in Row 2)
+  ====================================================================== -->
+  <section id="rooms" class="py-16 sm:py-20 px-3 sm:px-5 lg:px-8 max-w-[1440px] mx-auto">
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div>
+        <span class="text-amberwarm-600 font-bold uppercase tracking-[0.2em] text-xs block mb-2">
+          Riverside Stays in Sonikot
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-alpine-950">
+          Signature Rooms &amp; Suites
+        </h2>
+      </div>
+      <p class="text-alpine-800/85 max-w-md text-sm sm:text-base">
+        Choose from 6 thoughtfully crafted accommodations overlooking the Gilgit River and Karakoram peaks. Inspect multi-photo galleries or book directly via WhatsApp.
+      </p>
+    </div>
+
+    <!-- Active Filter Notice (shown when searching) -->
+    <div id="roomFilterNotice" class="hidden mb-6 flex items-center justify-between bg-sand-100 border border-sand-200 px-4 py-3 rounded-xl text-sm">
+      <span id="roomFilterText" class="text-alpine-900 font-medium"></span>
+      <button onclick="resetSearchFilter()" class="text-amberwarm-600 hover:text-amberwarm-500 font-semibold underline">
+        Clear Search
+      </button>
+    </div>
+
+    <!-- Rooms Grid: 3 Rooms per Row on Desktop (lg:grid-cols-3) -->
+    <div id="roomsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- 6 Room cards injected here -->
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MENU SECTION (Grill & Restaurant with Order Now -> Cart)
+  ====================================================================== -->
+  <section id="menu" class="py-16 sm:py-20 bg-sand-100/80 border-y border-sand-200">
+    <div class="max-w-[1440px] mx-auto px-3 sm:px-5 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-amberwarm-600 font-bold uppercase tracking-[0.2em] text-xs block mb-2">
+          Charcoal Grill &amp; Gilgiti Specialties
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-alpine-950 mb-4">
+          Paradise Grill Menu
+        </h2>
+        <p class="text-alpine-800/85 text-sm sm:text-base">
+          Freshly prepared over live embers and traditional Karakoram spices. Add dishes to your cart for fast Sonikot &amp; Gilgit delivery or airport-side pick up.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div id="menuCategoryTabs" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+        <button onclick="filterMenuByCategory('All')" data-cat="All" class="menu-tab active px-5 py-2.5 rounded-full text-sm font-semibold bg-alpine-900 text-white shadow-sm transition-all">
+          All Dishes
+        </button>
+        <button onclick="filterMenuByCategory('Charcoal Grill')" data-cat="Charcoal Grill" class="menu-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-alpine-900 border border-sand-200 hover:border-alpine-900 transition-all">
+          Charcoal Grill
+        </button>
+        <button onclick="filterMenuByCategory('Karahi & Traditional')" data-cat="Karahi & Traditional" class="menu-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-alpine-900 border border-sand-200 hover:border-alpine-900 transition-all">
+          Karahi &amp; Traditional
+        </button>
+        <button onclick="filterMenuByCategory('Beverages & Sides')" data-cat="Beverages & Sides" class="menu-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-alpine-900 border border-sand-200 hover:border-alpine-900 transition-all">
+          Beverages &amp; Sides
+        </button>
+      </div>
+
+      <!-- Menu Cards Grid (Populated Dynamically via JS) -->
+      <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Menu cards injected here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       LOCATION & CONTACT FOOTER (Same Image Logo + Social Media Icons)
+  ====================================================================== -->
+  <footer id="contact" class="bg-alpine-950 text-white pt-14 pb-10">
+    <div class="max-w-[1440px] mx-auto px-3 sm:px-5 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-12 border-b border-white/10">
+        <!-- Brand Image Logo & Social Media Icons -->
+        <div>
+          <a href="#home" class="inline-block mb-4 focus:outline-none">
+            <img
+              src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='58' viewBox='0 0 250 58'%3E%3Crect x='1' y='1' width='248' height='56' rx='14' fill='%231b312c'/%3E%3Crect x='4' y='4' width='242' height='50' rx='11' fill='none' stroke='%23f5b942' stroke-opacity='0.55' stroke-width='1.2'/%3E%3Cpath d='M24 38 L34 19 L43 32 L51 22 L61 38 Z' fill='%23f5b942'/%3E%3Ccircle cx='50' cy='15' r='3.5' fill='%23fff3d1'/%3E%3Ctext x='72' y='28' font-family='Georgia, serif' font-weight='bold' font-size='18' fill='%23ffffff' letter-spacing='0.8'%3EPARADISE GRILL%3C/text%3E%3Ctext x='73' y='43' font-family='Arial, sans-serif' font-weight='bold' font-size='8.5' fill='%23f5b942' letter-spacing='2.4'%3ESONIKOT %E2%80%A2 GILGIT%3C/text%3E%3C/svg%3E"
+              alt="Paradise Grill — Sonikot, Gilgit"
+              class="h-12 w-auto object-contain rounded-xl shadow-md"
+            />
+          </a>
+          <p class="text-white/75 text-sm leading-relaxed mb-5">
+            Premier boutique hotel and charcoal grill restaurant in Gilgit. Offering tranquil river views, warm hospitality, and authentic culinary experiences.
+          </p>
+
+          <!-- Social Media Icons: Facebook, TikTok, Instagram, YouTube -->
+          <div class="flex items-center gap-3">
+            <!-- Facebook -->
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow Paradise Grill on Facebook"
+              class="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#1877F2] text-white flex items-center justify-center transition-all hover:-translate-y-0.5"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a
+              href="https://tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow Paradise Grill on TikTok"
+              class="w-10 h-10 rounded-xl bg-white/10 hover:bg-black hover:ring-1 hover:ring-white/40 text-white flex items-center justify-center transition-all hover:-translate-y-0.5"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow Paradise Grill on Instagram"
+              class="w-10 h-10 rounded-xl bg-white/10 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-pink-600 hover:to-purple-600 text-white flex items-center justify-center transition-all hover:-translate-y-0.5"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+
+            <!-- YouTube -->
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Subscribe to Paradise Grill on YouTube"
+              class="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#FF0000] text-white flex items-center justify-center transition-all hover:-translate-y-0.5"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Location & Address -->
+        <div>
+          <h3 class="font-display text-lg font-semibold text-white mb-4">Visit Us</h3>
+          <ul class="space-y-3 text-sm text-white/75">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-amberwarm-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span><strong class="text-white">Address:</strong> River Road, Sonikot, Gilgit (Near Gilgit Airport), Gilgit-Baltistan</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-amberwarm-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span>Front Desk &amp; Delivery: +92 300 0000000</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 ml-1.5 mr-1"></span>
+              <span class="text-amberwarm-300 font-medium">Open Daily: 7:00 AM – 11:30 PM</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quick Actions -->
+        <div>
+          <h3 class="font-display text-lg font-semibold text-white mb-4">Quick Reservations</h3>
+          <p class="text-sm text-white/70 mb-4">
+            Need instant assistance with airport pick-up, group stays, or custom catering in Gilgit?
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#rooms" class="px-4 py-2.5 rounded-xl bg-amberwarm-500 hover:bg-amberwarm-400 text-alpine-950 font-semibold text-sm transition-colors">
+              Book a Room
+            </a>
+            <button onclick="openCartDrawer()" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors">
+              View Food Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-4">
+        <p>&copy; 2026 Paradise Grill Hotel &amp; Restaurant, Sonikot Gilgit. All rights reserved.</p>
+        <p>River Road, Sonikot, Near Gilgit Airport</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL 1: ROOM VIEW GALLERY & DETAILS MODAL
+  ====================================================================== -->
+  <div
+    id="roomViewModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-alpine-950/80 backdrop-blur-sm p-3 sm:p-6 overflow-y-auto"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="viewModalTitle"
+  >
+    <div class="modal-enter relative bg-white w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl border border-sand-200 my-auto">
+      <!-- Close Button -->
+      <button
+        type="button"
+        onclick="closeRoomViewModal()"
+        aria-label="Close Room Details"
+        class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-alpine-950/75 hover:bg-alpine-950 text-white flex items-center justify-center transition-colors shadow-md"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Multi-Image Carousel Stage -->
+      <div class="relative h-64 sm:h-96 bg-alpine-950">
+        <img
+          id="viewModalMainImg"
+          src=""
+          alt="Room Gallery View"
+          class="w-full h-full object-cover"
+        />
+
+        <!-- Previous / Next Gallery Arrows -->
+        <button
+          id="galleryPrevBtn"
+          type="button"
+          onclick="changeGalleryImage(-1)"
+          aria-label="Previous Image"
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-alpine-950 flex items-center justify-center shadow-lg transition-all"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <button
+          id="galleryNextBtn"
+          type="button"
+          onclick="changeGalleryImage(1)"
+          aria-label="Next Image"
+          class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-alpine-950 flex items-center justify-center shadow-lg transition-all"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <!-- Image Counter Pill -->
+        <span
+          id="galleryCounter"
+          class="absolute bottom-3 right-4 px-3 py-1 rounded-full bg-alpine-950/80 text-white text-xs font-bold backdrop-blur-md"
+        >
+          1 / 3
+        </span>
+      </div>
+
+      <!-- Thumbnail Strip -->
+      <div id="viewModalThumbnails" class="flex items-center gap-2.5 px-6 pt-4 overflow-x-auto">
+        <!-- Thumbnails injected dynamically -->
+      </div>
+
+      <!-- Room Full Details -->
+      <div class="p-6 sm:p-8 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-sand-200 pb-4">
+          <div>
+            <div id="viewModalMeta" class="flex flex-wrap items-center gap-2 text-xs font-semibold text-alpine-800 mb-2"></div>
+            <h3 id="viewModalTitle" class="font-display text-2xl sm:text-3xl font-bold text-alpine-950"></h3>
+          </div>
+          <div id="viewModalPrice" class="text-2xl font-extrabold text-amberwarm-600 shrink-0"></div>
+        </div>
+
+        <p id="viewModalDescription" class="text-sm sm:text-base text-alpine-800/90 leading-relaxed"></p>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-alpine-700 mb-2.5">Included Amenities</h4>
+          <div id="viewModalAmenities" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <div class="pt-3 flex flex-col sm:flex-row items-center justify-end gap-3">
+          <button
+            type="button"
+            onclick="closeRoomViewModal()"
+            class="w-full sm:w-auto px-6 py-3 rounded-xl border border-sand-200 hover:bg-sand-100 text-alpine-900 font-semibold text-sm transition-colors"
+          >
+            Close Preview
+          </button>
+          <button
+            id="viewModalBookBtn"
+            type="button"
+            class="w-full sm:w-auto px-8 py-3 rounded-xl bg-amberwarm-500 hover:bg-amberwarm-400 text-alpine-950 font-bold text-sm shadow-md transition-all"
+          >
+            Book This Room Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: ROOM BOOKING FORM & WHATSAPP CONFIRMATION
+  ====================================================================== -->
+  <div
+    id="roomBookModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-alpine-950/80 backdrop-blur-sm p-3 sm:p-6 overflow-y-auto"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bookModalRoomTitle"
+  >
+    <div class="modal-enter relative bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border border-sand-200 my-auto">
+      <!-- Modal Header -->
+      <div class="bg-alpine-900 text-white px-6 py-5 flex items-center justify-between">
+        <div>
+          <span class="text-amberwarm-400 text-xs font-bold uppercase tracking-wider block">Room Reservation</span>
+          <h3 id="bookModalRoomTitle" class="font-display text-xl sm:text-2xl font-bold mt-0.5">Room Name</h3>
+        </div>
+        <button
+          type="button"
+          onclick="closeRoomBookModal()"
+          aria-label="Close Booking Modal"
+          class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Booking Form -->
+      <form onsubmit="submitRoomBookingWhatsApp(event)" class="p-6 space-y-4">
+        <div class="flex items-center justify-between bg-sand-100 px-4 py-2.5 rounded-xl border border-sand-200 text-sm">
+          <span class="text-alpine-800 font-medium">Rate per room / night:</span>
+          <span id="bookModalRateDisplay" class="font-bold text-alpine-950">Rs. 0</span>
+        </div>
+
+        <div>
+          <label for="bookCustomerName" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1.5">
+            Customer Name *
+          </label>
+          <input
+            type="text"
+            id="bookCustomerName"
+            required
+            placeholder="Enter your full name"
+            class="w-full h-11 px-4 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+          />
+        </div>
+
+        <div>
+          <label for="bookPhoneNumber" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1.5">
+            Phone Number *
+          </label>
+          <input
+            type="tel"
+            id="bookPhoneNumber"
+            required
+            placeholder="e.g. 0300-1234567"
+            class="w-full h-11 px-4 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="bookRoomsQty" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1.5">
+              Rooms Quantity *
+            </label>
+            <input
+              type="number"
+              id="bookRoomsQty"
+              min="1"
+              max="20"
+              value="1"
+              required
+              oninput="calculateRoomTotal()"
+              class="w-full h-11 px-4 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm font-bold focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+            />
+          </div>
+
+          <div>
+            <label for="bookDaysQty" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1.5">
+              Days / Nights *
+            </label>
+            <input
+              type="number"
+              id="bookDaysQty"
+              min="1"
+              max="60"
+              value="1"
+              required
+              oninput="calculateRoomTotal()"
+              class="w-full h-11 px-4 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm font-bold focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="bookArrivalTiming" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1.5">
+            Arrival Timing *
+          </label>
+          <input
+            type="text"
+            id="bookArrivalTiming"
+            required
+            placeholder="e.g. Today at 4:00 PM / 15 Nov, 2:00 PM"
+            class="w-full h-11 px-4 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+          />
+        </div>
+
+        <!-- Dynamic Total Price Calculation Card -->
+        <div class="bg-amberwarm-400/15 border border-amberwarm-500/35 rounded-2xl p-4 flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-alpine-800 block">Estimated Total Price</span>
+            <span id="bookTotalBreakdown" class="text-xs text-alpine-700 font-medium">1 Room × 1 Day</span>
+          </div>
+          <span id="bookTotalPrice" class="text-2xl font-extrabold text-alpine-950">Rs. 0</span>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3.5 px-5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-extrabold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2.5 active:scale-95"
+        >
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z" />
+          </svg>
+          <span>Confirm Booking By WhatsApp</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       SLIDE-OUT FOOD ORDER CART DRAWER (Delivery vs Pick Up Checkout)
+  ====================================================================== -->
+  <div
+    id="cartDrawerBackdrop"
+    class="fixed inset-0 z-50 hidden bg-alpine-950/75 backdrop-blur-sm flex justify-end"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Food Order Cart"
+  >
+    <div class="bg-white w-full max-w-md h-full flex flex-col shadow-2xl overflow-hidden">
+      <!-- Drawer Header -->
+      <div class="bg-alpine-900 text-white px-5 py-4 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-amberwarm-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <h3 class="font-display text-xl font-bold">Your Food Order</h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="clearCartBtn"
+            type="button"
+            onclick="clearCart()"
+            class="hidden text-xs text-amberwarm-300 hover:text-white underline px-2 py-1"
+          >
+            Clear All
+          </button>
+          <button
+            type="button"
+            onclick="closeCartDrawer()"
+            aria-label="Close Cart"
+            class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Cart Items + Checkout Form -->
+      <div class="flex-1 overflow-y-auto p-5 space-y-6">
+        <!-- Cart Items List -->
+        <div id="cartItemsContainer" class="space-y-3">
+          <!-- Cart items injected here -->
+        </div>
+
+        <!-- Checkout Form Section (Visible when cart has items) -->
+        <div id="cartCheckoutSection" class="hidden space-y-5 pt-4 border-t border-sand-200">
+          <!-- Total Price Summary -->
+          <div class="bg-alpine-950 text-white p-4 rounded-2xl flex items-center justify-between">
+            <span class="text-sm font-semibold text-white/80">Total Order Price</span>
+            <span id="cartTotalPrice" class="text-2xl font-extrabold text-amberwarm-400">Rs. 0</span>
+          </div>
+
+          <form onsubmit="submitFoodOrderWhatsApp(event)" class="space-y-4">
+            <h4 class="font-display text-lg font-bold text-alpine-950">Customer &amp; Fulfillment Details</h4>
+
+            <div>
+              <label for="orderUserName" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1">
+                User Name *
+              </label>
+              <input
+                type="text"
+                id="orderUserName"
+                required
+                placeholder="Your full name"
+                class="w-full h-11 px-3.5 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="orderContactNumber" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1">
+                  Contact Number *
+                </label>
+                <input
+                  type="tel"
+                  id="orderContactNumber"
+                  required
+                  placeholder="0300-1234567"
+                  class="w-full h-11 px-3.5 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+                />
+              </div>
+              <div>
+                <label for="orderAdditionalNumber" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1">
+                  Additional Number
+                </label>
+                <input
+                  type="tel"
+                  id="orderAdditionalNumber"
+                  placeholder="Optional backup no."
+                  class="w-full h-11 px-3.5 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+                />
+              </div>
+            </div>
+
+            <!-- Delivery vs Pick Up Selection -->
+            <div>
+              <span class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-2">
+                Select Order Type *
+              </span>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="orderMode"
+                    value="Delivery"
+                    checked
+                    onchange="toggleOrderModeFields()"
+                    class="peer sr-only"
+                  />
+                  <div class="py-3 px-4 rounded-xl border-2 border-sand-200 peer-checked:border-alpine-900 peer-checked:bg-alpine-900 peer-checked:text-white text-alpine-900 font-bold text-sm text-center transition-all">
+                    🚚 Delivery
+                  </div>
+                </label>
+
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="orderMode"
+                    value="Pick Up"
+                    onchange="toggleOrderModeFields()"
+                    class="peer sr-only"
+                  />
+                  <div class="py-3 px-4 rounded-xl border-2 border-sand-200 peer-checked:border-alpine-900 peer-checked:bg-alpine-900 peer-checked:text-white text-alpine-900 font-bold text-sm text-center transition-all">
+                    🛍️ Pick Up
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Conditional Delivery Address Field (Shown ONLY when Delivery is selected) -->
+            <div id="deliveryAddressWrapper">
+              <label for="orderDeliveryAddress" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1">
+                Complete Delivery Address *
+              </label>
+              <textarea
+                id="orderDeliveryAddress"
+                rows="2"
+                required
+                placeholder="House / Hotel / Street / Landmark in Sonikot or Gilgit..."
+                class="w-full p-3.5 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+              ></textarea>
+            </div>
+
+            <!-- Conditional Pick Up Timing Field (Shown ONLY when Pick Up is selected; Address is hidden) -->
+            <div id="pickupTimingWrapper" class="hidden">
+              <label for="orderPickupTiming" class="block text-xs font-bold text-alpine-900 uppercase tracking-wide mb-1">
+                Pick Up Timing *
+              </label>
+              <input
+                type="text"
+                id="orderPickupTiming"
+                placeholder="e.g. In 25 minutes / Today at 8:30 PM"
+                class="w-full h-11 px-3.5 rounded-xl bg-sand-50 border border-sand-200 text-alpine-950 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amberwarm-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full py-3.5 px-5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-extrabold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2.5 active:scale-95"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z" />
+              </svg>
+              <span>Confirm By WhatsApp</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       NON-INTRUSIVE CLICKABLE TOAST NOTIFICATION (Replaces alert())
+  ====================================================================== -->
+  <div
+    id="toastNotification"
+    onclick="openCartDrawer()"
+    role="status"
+    class="fixed bottom-5 right-4 sm:right-6 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 bg-emerald-700 hover:bg-emerald-600 cursor-pointer text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-emerald-400/40 flex items-center gap-3 max-w-sm"
+  >
+    <span class="w-6 h-6 rounded-full bg-white text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0">✓</span>
+    <div class="flex-1 min-w-0">
+      <p id="toastMessage" class="text-sm font-bold truncate">Item added to cart</p>
+      <span class="text-[11px] text-emerald-100 underline block">Click here to view cart &amp; checkout</span>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       APPLICATION DATA & INTERACTIVE LOGIC
+  ====================================================================== -->
+  <script>
+    /**
+     * HOTEL WHATSAPP CONFIGURATION
+     * Replace with Paradise Grill's official WhatsApp number in international format (no '+' or spaces).
+     */
+    const HOTEL_WHATSAPP_NUMBER = "923000000000";
+
+    /**
+     * ROOMS DATA (6 Distinct Rooms: 3 in Row 1, 3 in Row 2)
+     */
+    const ROOMS_DATA = [
+      {
+        id: "room-standard",
+        title: "Standard River View Room",
+        price: 8500,
+        size: "320 sq. ft.",
+        guests: "2 Adults",
+        badge: "Cozy Riverside",
+        description:
+          "Wake up to the soothing sound of the Gilgit River. Our Standard River View Room features plush queen bedding, warm cedar accents, high-speed Wi-Fi, and quick 2-minute access to Gilgit Airport.",
+        amenities: ["Gilgit River View", "Free High-Speed Wi-Fi", "24/7 Hot Water", "Smart LED TV", "Room Service"],
+        images: [
+          "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80"
+        ]
+      },
+      {
+        id: "room-deluxe",
+        title: "Deluxe Mountain Suite",
+        price: 12500,
+        size: "460 sq. ft.",
+        guests: "2 Adults + 1 Child",
+        badge: "Most Popular",
+        description:
+          "Spacious elegance with a private balcony framing the Karakoram peaks and River Road valley. Includes a dedicated seating lounge, artisan Kashmiri rugs, climate control, and complimentary morning tea.",
+        amenities: ["Private Mountain Balcony", "King Size Bed", "Seating Lounge", "Climate Control", "Complimentary Tea/Coffee"],
+        images: [
+          "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1000&q=80"
+        ]
+      },
+      {
+        id: "room-twin",
+        title: "Alpine Twin Comfort Room",
+        price: 9500,
+        size: "360 sq. ft.",
+        guests: "2 Adults",
+        badge: "Twin Beds",
+        description:
+          "Tailored for trekking partners, business travelers, and friends visiting Gilgit. Features two extra-long orthopedic twin beds, sunlit valley windows, dedicated work desk, and fast airport access.",
+        amenities: ["2 Orthopedic Twin Beds", "Sunlit Valley View", "Work Desk & Wi-Fi", "24/7 Hot Water", "Airport Proximity"],
+        images: [
+          "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80"
+        ]
+      },
+      {
+        id: "room-family",
+        title: "Executive Family Suite",
+        price: 17000,
+        size: "680 sq. ft.",
+        guests: "Up to 4 Guests",
+        badge: "Ideal for Families",
+        description:
+          "Designed for families and groups exploring Gilgit-Baltistan. Features two interconnected sleeping zones, two modern en-suite bathrooms, panoramic river-facing windows, and priority dining service.",
+        amenities: ["2 Interconnected Rooms", "2 En-suite Bathrooms", "River & Valley Panorama", "Airport Transfer Assistance", "Mini Fridge"],
+        images: [
+          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80"
+        ]
+      },
+      {
+        id: "room-transit",
+        title: "Airport Express Studio",
+        price: 7500,
+        size: "290 sq. ft.",
+        guests: "1–2 Guests",
+        badge: "2 Mins to Airport",
+        description:
+          "Smart, bright, and convenient studio located on River Road Sonikot right near Gilgit Airport. Perfect for early morning flight departures or overnight layovers with express room service.",
+        amenities: ["2 Mins to Gilgit Airport", "Express Check-in", "Queen Bed", "High-Speed Fiber Wi-Fi", "Complimentary Breakfast Tea"],
+        images: [
+          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80"
+        ]
+      },
+      {
+        id: "room-honeymoon",
+        title: "Honeymoon Panoramic Suite",
+        price: 21000,
+        size: "580 sq. ft.",
+        guests: "2 Adults",
+        badge: "Luxury Corner",
+        description:
+          "Our flagship top-floor corner suite boasting 270-degree views of the Gilgit River and sunset peaks. Includes bespoke wooden interiors, luxury soaking tub, candlelight dinner setup on request, and private terrace.",
+        amenities: ["270° Panoramic Terrace", "Luxury Soaking Tub", "Canopy King Bed", "Candlelight Dinner Setup", "VIP Hospitality"],
+        images: [
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1000&q=80"
+        ]
+      }
+    ];
+
+    /**
+     * MENU DATA (Diverse Paradise Grill Dishes)
+     */
+    const MENU_DATA = [
+      {
+        id: "menu-1",
+        title: "Gilgiti Special Mutton Karahi (1 Kg)",
+        category: "Karahi & Traditional",
+        price: 3400,
+        description: "Tender mountain mutton wok-seared with fresh tomatoes, green chilies, ginger juliennes, and organic Gilgiti herbs.",
+        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "menu-2",
+        title: "Paradise Charcoal BBQ Platter",
+        category: "Charcoal Grill",
+        price: 2650,
+        description: "Assortment of beef seekh kebabs, chicken malai boti, reshmi kebabs, and grilled wings served with mint chutney & naan.",
+        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "menu-3",
+        title: "Fresh Gilgit River Trout Grill",
+        category: "Charcoal Grill",
+        price: 2200,
+        description: "Locally caught river rainbow trout marinated in lemon, garlic, and crushed black pepper, flame-grilled to crispy perfection.",
+        image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "menu-4",
+        title: "Traditional Hunza Chapshuro",
+        category: "Karahi & Traditional",
+        price: 850,
+        description: "Crisp golden flatbread stuffed with spiced minced beef, onions, tomatoes, and fresh coriander baked in our clay oven.",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "menu-5",
+        title: "Smoky Chicken Tikka & Kabuli Pulao",
+        category: "Charcoal Grill",
+        price: 1450,
+        description: "Fragrant basmati rice topped with caramelized carrots and raisins paired with a quarter charcoal-roasted chicken tikka.",
+        image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "menu-6",
+        title: "Pink Kashmiri Chai & Walnut Cake",
+        category: "Beverages & Sides",
+        price: 650,
+        description: "Velvety salted pink noon chai garnished with crushed pistachios and almonds alongside warm Gilgit walnut cake.",
+        image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    /**
+     * APPLICATION STATE
+     */
+    let activeMenuCategory = "All";
+    let searchQuery = "";
+    let searchScope = "all";
+    let cart = []; // Array of { id, title, price, image, quantity }
+
+    // Active room state for modals
+    let currentViewRoom = null;
+    let currentGalleryIndex = 0;
+    let currentBookingRoom = null;
+
+    /**
+     * INITIALIZE PAGE ON LOAD
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      renderRooms();
+      renderMenu();
+      renderCart();
+    });
+
+    /**
+     * FORMAT CURRENCY (PKR)
+     */
+    function formatPKR(amount) {
+      return "Rs. " + Number(amount).toLocaleString("en-PK");
+    }
+
+    /**
+     * TOAST MESSAGE HELPER
+     */
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById("toastNotification");
+      const msgEl = document.getElementById("toastMessage");
+      msgEl.textContent = message;
+      toast.classList.remove("translate-y-24", "opacity-0", "pointer-events-none");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add("translate-y-24", "opacity-0", "pointer-events-none");
+      }, 2800);
+    }
+
+    /**
+     * MOBILE & TABLET NAVIGATION DRAWER
+     */
+    function toggleMobileMenu() {
+      const drawer = document.getElementById("mobileMenuDrawer");
+      const btn = document.getElementById("mobileMenuBtn");
+      const openIcon = document.getElementById("menuOpenIcon");
+      const closeIcon = document.getElementById("menuCloseIcon");
+
+      const isHidden = drawer.classList.contains("hidden");
+      if (isHidden) {
+        drawer.classList.remove("hidden");
+        openIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        btn.setAttribute("aria-expanded", "true");
+      } else {
+        closeMobileMenu();
+      }
+    }
+
+    function closeMobileMenu() {
+      const drawer = document.getElementById("mobileMenuDrawer");
+      const btn = document.getElementById("mobileMenuBtn");
+      const openIcon = document.getElementById("menuOpenIcon");
+      const closeIcon = document.getElementById("menuCloseIcon");
+
+      drawer.classList.add("hidden");
+      openIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
+      btn.setAttribute("aria-expanded", "false");
+    }
+
+    /**
+     * HERO SEARCH & LIVE FILTERING
+     */
+    function liveFilterContent() {
+      searchQuery = document.getElementById("heroSearchInput").value.trim().toLowerCase();
+      searchScope = document.getElementById("heroSearchCategory").value;
+      renderRooms();
+      renderMenu();
+    }
+
+    function handleHeroSearch(e) {
+      e.preventDefault();
+      liveFilterContent();
+      const scope = document.getElementById("heroSearchCategory").value;
+      const targetId = scope === "menu" ? "menu" : "rooms";
+      document.getElementById(targetId).scrollIntoView({ behavior: "smooth" });
+    }
+
+    function resetSearchFilter() {
+      document.getElementById("heroSearchInput").value = "";
+      document.getElementById("heroSearchCategory").value = "all";
+      searchQuery = "";
+      searchScope = "all";
+      renderRooms();
+      renderMenu();
+    }
+
+    /**
+     * RENDER ROOMS GRID
+     */
+    function renderRooms() {
+      const grid = document.getElementById("roomsGrid");
+      const notice = document.getElementById("roomFilterNotice");
+      const noticeText = document.getElementById("roomFilterText");
+
+      let filtered = ROOMS_DATA;
+      if (searchQuery && (searchScope === "all" || searchScope === "rooms")) {
+        filtered = ROOMS_DATA.filter(
+          (room) =>
+            room.title.toLowerCase().includes(searchQuery) ||
+            room.description.toLowerCase().includes(searchQuery) ||
+            room.amenities.some((a) => a.toLowerCase().includes(searchQuery))
+        );
+        notice.classList.remove("hidden");
+        noticeText.textContent = `Showing ${filtered.length} room(s) matching "${searchQuery}"`;
+      } else {
+        notice.classList.add("hidden");
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-10 text-center border border-sand-200">
+            <p class="font-display text-xl font-bold text-alpine-900 mb-2">No matching rooms found</p>
+            <p class="text-sm text-alpine-700 mb-4">Try searching for "River", "Deluxe", "Family", or "Suite".</p>
+            <button onclick="resetSearchFilter()" class="px-5 py-2.5 rounded-xl bg-alpine-900 text-white text-sm font-semibold">Show All Rooms</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered
+        .map(
+          (room) => `
+          <article class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-sand-200 flex flex-col group">
+            <!-- Room Thumbnail -->
+            <div class="relative h-64 sm:h-72 overflow-hidden bg-alpine-900">
+              <img
+                src="${room.images[0]}"
+                onerror="this.src='https://placehold.co/800x600/1b312c/f5b942?text=${encodeURIComponent(room.title)}'"
+                alt="${room.title}"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-alpine-950/70 via-transparent to-transparent"></div>
+              
+              <!-- Top Badge -->
+              <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-alpine-950/85 backdrop-blur-md text-amberwarm-400 text-xs font-bold tracking-wide border border-white/10">
+                ${room.badge}
+              </span>
+
+              <!-- Photo Count Indicator -->
+              <button
+                onclick="openRoomViewModal('${room.id}')"
+                class="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/90 hover:bg-white text-alpine-950 text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors"
+              >
+                <svg class="w-3.5 h-3.5 text-amberwarm-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>${room.images.length} Photos</span>
+              </button>
+
+              <!-- Price Overlay -->
+              <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
+                <div>
+                  <span class="text-xs text-white/80 block">${room.size} • ${room.guests}</span>
+                  <h3 class="font-display text-2xl font-bold leading-snug">${room.title}</h3>
+                </div>
+                <div class="text-right shrink-0 bg-alpine-950/85 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/10">
+                  <span class="text-lg sm:text-xl font-bold text-amberwarm-400 block leading-none">${formatPKR(room.price)}</span>
+                  <span class="text-[11px] text-white/75">per night</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Room Body & Action Buttons -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+              <div>
+                <p class="text-sm text-alpine-800/85 line-clamp-2 leading-relaxed mb-4">
+                  ${room.description}
+                </p>
+                <!-- Key Amenities Preview -->
+                <div class="flex flex-wrap gap-1.5">
+                  ${room.amenities
+                    .slice(0, 3)
+                    .map(
+                      (item) =>
+                        `<span class="px-2.5 py-1 rounded-lg bg-sand-100 text-alpine-900 text-xs font-medium">${item}</span>`
+                    )
+                    .join("")}
+                </div>
+              </div>
+
+              <!-- View & Book Now Buttons -->
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <button
+                  onclick="openRoomViewModal('${room.id}')"
+                  class="py-3 px-4 rounded-xl border-2 border-alpine-900 text-alpine-900 hover:bg-alpine-900 hover:text-white font-bold text-sm transition-all flex items-center justify-center gap-2 active:scale-95"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  <span>View</span>
+                </button>
+
+                <button
+                  onclick="openRoomBookModal('${room.id}')"
+                  class="py-3 px-4 rounded-xl bg-amberwarm-500 hover:bg-amberwarm-400 text-alpine-950 font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-95"
+                >
+                  <span>Book Now</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        `
+        )
+        .join("");
+    }
+
+    /**
+     * ROOM VIEW MODAL & MULTI-IMAGE GALLERY CONTROLS
+     */
+    function openRoomViewModal(roomId) {
+      const room = ROOMS_DATA.find((r) => r.id === roomId);
+      if (!room) return;
+
+      currentViewRoom = room;
+      currentGalleryIndex = 0;
+
+      document.getElementById("viewModalTitle").textContent = room.title;
+      document.getElementById("viewModalPrice").innerHTML = `${formatPKR(room.price)} <span class="text-sm font-normal text-alpine-700">/ night</span>`;
+      document.getElementById("viewModalDescription").textContent = room.description;
+
+      document.getElementById("viewModalMeta").innerHTML = `
+        <span class="px-3 py-1 rounded-full bg-sand-100 border border-sand-200">${room.size}</span>
+        <span class="px-3 py-1 rounded-full bg-sand-100 border border-sand-200">${room.guests}</span>
+      `;
+
+      document.getElementById("viewModalAmenities").innerHTML = room.amenities
+        .map(
+          (am) =>
+            `<span class="px-3 py-1.5 rounded-xl bg-alpine-900/5 text-alpine-900 text-xs font-semibold border border-alpine-900/10">✓ ${am}</span>`
+        )
+        .join("");
+
+      // Wire up "Book This Room Now" button inside View Modal
+      document.getElementById("viewModalBookBtn").onclick = () => {
+        closeRoomViewModal();
+        openRoomBookModal(room.id);
+      };
+
+      updateGalleryDisplay();
+
+      const modal = document.getElementById("roomViewModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function updateGalleryDisplay() {
+      if (!currentViewRoom) return;
+      const images = currentViewRoom.images;
+      const mainImg = document.getElementById("viewModalMainImg");
+      mainImg.src = images[currentGalleryIndex];
+      mainImg.onerror = () => {
+        mainImg.src = `https://placehold.co/1000x600/1b312c/f5b942?text=${encodeURIComponent(currentViewRoom.title)}`;
+      };
+
+      document.getElementById("galleryCounter").textContent = `${currentGalleryIndex + 1} / ${images.length}`;
+
+      // Show/Hide prev/next buttons based on image count
+      const prevBtn = document.getElementById("galleryPrevBtn");
+      const nextBtn = document.getElementById("galleryNextBtn");
+      if (images.length <= 1) {
+        prevBtn.classList.add("hidden");
+        nextBtn.classList.add("hidden");
+      } else {
+        prevBtn.classList.remove("hidden");
+        nextBtn.classList.remove("hidden");
+      }
+
+      // Render Thumbnails
+      const thumbsContainer = document.getElementById("viewModalThumbnails");
+      thumbsContainer.innerHTML = images
+        .map(
+          (imgUrl, idx) => `
+          <button
+            onclick="selectGalleryImage(${idx})"
+            class="relative w-20 h-14 rounded-xl overflow-hidden shrink-0 border-2 transition-all ${
+              idx === currentGalleryIndex ? "border-amberwarm-500 scale-105 shadow-md" : "border-transparent opacity-65 hover:opacity-100"
+            }"
+          >
+            <img src="${imgUrl}" alt="Thumbnail ${idx + 1}" class="w-full h-full object-cover" />
+          </button>
+        `
+        )
+        .join("");
+    }
+
+    function changeGalleryImage(direction) {
+      if (!currentViewRoom) return;
+      const total = currentViewRoom.images.length;
+      currentGalleryIndex = (currentGalleryIndex + direction + total) % total;
+      updateGalleryDisplay();
+    }
+
+    function selectGalleryImage(index) {
+      currentGalleryIndex = index;
+      updateGalleryDisplay();
+    }
+
+    function closeRoomViewModal() {
+      const modal = document.getElementById("roomViewModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    /**
+     * ROOM BOOKING MODAL & WHATSAPP SUBMISSION
+     */
+    function openRoomBookModal(roomId) {
+      const room = ROOMS_DATA.find((r) => r.id === roomId);
+      if (!room) return;
+
+      currentBookingRoom = room;
+      document.getElementById("bookModalRoomTitle").textContent = room.title;
+      document.getElementById("bookModalRateDisplay").textContent = formatPKR(room.price);
+
+      // Reset default values
+      document.getElementById("bookRoomsQty").value = 1;
+      document.getElementById("bookDaysQty").value = 1;
+      calculateRoomTotal();
+
+      const modal = document.getElementById("roomBookModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeRoomBookModal() {
+      const modal = document.getElementById("roomBookModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    function calculateRoomTotal() {
+      if (!currentBookingRoom) return;
+      const roomsQty = Math.max(1, parseInt(document.getElementById("bookRoomsQty").value) || 1);
+      const daysQty = Math.max(1, parseInt(document.getElementById("bookDaysQty").value) || 1);
+      const total = currentBookingRoom.price * roomsQty * daysQty;
+
+      document.getElementById("bookTotalBreakdown").textContent = `${roomsQty} Room${roomsQty > 1 ? "s" : ""} × ${daysQty} Day${daysQty > 1 ? "s" : ""}`;
+      document.getElementById("bookTotalPrice").textContent = formatPKR(total);
+    }
+
+    function submitRoomBookingWhatsApp(event) {
+      event.preventDefault();
+      if (!currentBookingRoom) return;
+
+      const customerName = document.getElementById("bookCustomerName").value.trim();
+      const phoneNumber = document.getElementById("bookPhoneNumber").value.trim();
+      const roomsQty = Math.max(1, parseInt(document.getElementById("bookRoomsQty").value) || 1);
+      const daysQty = Math.max(1, parseInt(document.getElementById("bookDaysQty").value) || 1);
+      const arrivalTiming = document.getElementById("bookArrivalTiming").value.trim();
+      const totalPrice = currentBookingRoom.price * roomsQty * daysQty;
+
+      const message =
+        `*NEW ROOM BOOKING — PARADISE GRILL*\n` +
+        `📍 Location: River Road, Sonikot, Gilgit\n` +
+        `----------------------------------\n` +
+        `🛏️ *Room:* ${currentBookingRoom.title}\n` +
+        `👤 *Customer Name:* ${customerName}\n` +
+        `📞 *Phone Number:* ${phoneNumber}\n` +
+        `🔢 *Rooms Quantity:* ${roomsQty}\n` +
+        `📅 *Days / Nights:* ${daysQty}\n` +
+        `⏰ *Arrival Timing:* ${arrivalTiming}\n` +
+        `----------------------------------\n` +
+        `💰 *Total Price:* ${formatPKR(totalPrice)}\n\n` +
+        `Please confirm my room reservation. Thank you!`;
+
+      const whatsappUrl = `https://wa.me/${HOTEL_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      closeRoomBookModal();
+      showToast("Opening WhatsApp with your room booking details...");
+    }
+
+    /**
+     * MENU FILTERING & RENDERING
+     */
+    function filterMenuByCategory(category) {
+      activeMenuCategory = category;
+
+      // Update active button styles
+      document.querySelectorAll(".menu-tab").forEach((btn) => {
+        if (btn.dataset.cat === category) {
+          btn.classList.remove("bg-white", "text-alpine-900", "border", "border-sand-200");
+          btn.classList.add("bg-alpine-900", "text-white", "shadow-sm");
+        } else {
+          btn.classList.add("bg-white", "text-alpine-900", "border", "border-sand-200");
+          btn.classList.remove("bg-alpine-900", "text-white", "shadow-sm");
+        }
+      });
+
+      renderMenu();
+    }
+
+    function renderMenu() {
+      const grid = document.getElementById("menuGrid");
+      let filtered = MENU_DATA;
+
+      if (activeMenuCategory !== "All") {
+        filtered = filtered.filter((item) => item.category === activeMenuCategory);
+      }
+
+      if (searchQuery && (searchScope === "all" || searchScope === "menu")) {
+        filtered = filtered.filter(
+          (item) =>
+            item.title.toLowerCase().includes(searchQuery) ||
+            item.description.toLowerCase().includes(searchQuery) ||
+            item.category.toLowerCase().includes(searchQuery)
+        );
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-10 text-center border border-sand-200">
+            <p class="font-display text-xl font-bold text-alpine-900 mb-2">No matching dishes found</p>
+            <p class="text-sm text-alpine-700 mb-4">Try selecting "All Dishes" or clearing your search filter.</p>
+            <button onclick="resetSearchFilter(); filterMenuByCategory('All');" class="px-5 py-2.5 rounded-xl bg-alpine-900 text-white text-sm font-semibold">View Full Menu</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered
+        .map(
+          (item) => `
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sand-200 flex flex-col group">
+            <div class="relative h-52 overflow-hidden bg-alpine-900">
+              <img
+                src="${item.image}"
+                onerror="this.src='https://placehold.co/600x400/1b312c/f5b942?text=${encodeURIComponent(item.title)}'"
+                alt="${item.title}"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-alpine-950/80 backdrop-blur-md text-white text-[11px] font-semibold">
+                ${item.category}
+              </span>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <div class="flex items-start justify-between gap-3 mb-2">
+                  <h3 class="font-display text-xl font-bold text-alpine-950 leading-snug">${item.title}</h3>
+                  <span class="text-base font-bold text-amberwarm-600 shrink-0">${formatPKR(item.price)}</span>
+                </div>
+                <p class="text-xs sm:text-sm text-alpine-800/80 leading-relaxed">
+                  ${item.description}
+                </p>
+              </div>
+
+              <button
+                id="order-btn-${item.id}"
+                onclick="addToCart('${item.id}', this)"
+                class="w-full py-3 px-4 rounded-xl bg-alpine-900 hover:bg-alpine-800 text-white font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm active:scale-95"
+              >
+                <svg class="w-4 h-4 text-amberwarm-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Order Now</span>
+              </button>
+            </div>
+          </div>
+        `
+        )
+        .join("");
+    }
+
+    /**
+     * SHOPPING CART MANAGEMENT WITH CLEAR VISUAL FEEDBACK
+     */
+    function addToCart(menuId, btnElement) {
+      const item = MENU_DATA.find((m) => m.id === menuId);
+      if (!item) return;
+
+      const existing = cart.find((c) => c.id === menuId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: item.id,
+          title: item.title,
+          price: item.price,
+          image: item.image,
+          quantity: 1
+        });
+      }
+
+      // 1. Immediate visual state change on the clicked "Order Now" button
+      const targetBtn = btnElement || document.getElementById(`order-btn-${menuId}`);
+      if (targetBtn) {
+        clearTimeout(targetBtn._resetTimer);
+        targetBtn.classList.remove("bg-alpine-900", "hover:bg-alpine-800");
+        targetBtn.classList.add("bg-emerald-600", "hover:bg-emerald-500", "ring-2", "ring-emerald-300");
+        targetBtn.innerHTML = `
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Added to Cart!</span>
+        `;
+
+        targetBtn._resetTimer = setTimeout(() => {
+          targetBtn.classList.add("bg-alpine-900", "hover:bg-alpine-800");
+          targetBtn.classList.remove("bg-emerald-600", "hover:bg-emerald-500", "ring-2", "ring-emerald-300");
+          targetBtn.innerHTML = `
+            <svg class="w-4 h-4 text-amberwarm-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Order Now</span>
+          `;
+        }, 1700);
+      }
+
+      renderCart(true);
+      showToast(`Added "${item.title}" to cart`);
+    }
+
+    function updateCartQuantity(menuId, delta) {
+      const idx = cart.findIndex((c) => c.id === menuId);
+      if (idx === -1) return;
+
+      cart[idx].quantity += delta;
+      if (cart[idx].quantity <= 0) {
+        cart.splice(idx, 1);
+      }
+      renderCart(false);
+    }
+
+    function removeFromCart(menuId) {
+      cart = cart.filter((c) => c.id !== menuId);
+      renderCart(false);
+    }
+
+    function clearCart() {
+      cart = [];
+      renderCart(false);
+    }
+
+    function renderCart(justAdded = false) {
+      const badge = document.getElementById("cartBadge");
+      const navCartBtn = document.getElementById("navCartBtn");
+      const navCartIcon = document.getElementById("navCartIcon");
+      const container = document.getElementById("cartItemsContainer");
+      const checkoutSection = document.getElementById("cartCheckoutSection");
+      const totalPriceEl = document.getElementById("cartTotalPrice");
+      const clearBtn = document.getElementById("clearCartBtn");
+
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      badge.textContent = totalCount;
+
+      // Highlight Navbar Cart Button background distinctly whenever cart has items
+      if (totalCount > 0) {
+        navCartBtn.classList.remove("bg-alpine-900", "hover:bg-alpine-800");
+        navCartBtn.classList.add("bg-emerald-600", "hover:bg-emerald-500", "shadow-md", "shadow-emerald-600/25");
+        navCartIcon.classList.remove("text-amberwarm-400");
+        navCartIcon.classList.add("text-white");
+        badge.classList.remove("bg-amberwarm-400", "text-alpine-950");
+        badge.classList.add("bg-white", "text-emerald-800");
+
+        if (justAdded) {
+          badge.classList.add("scale-125");
+          setTimeout(() => badge.classList.remove("scale-125"), 300);
+        }
+      } else {
+        navCartBtn.classList.add("bg-alpine-900", "hover:bg-alpine-800");
+        navCartBtn.classList.remove("bg-emerald-600", "hover:bg-emerald-500", "shadow-md", "shadow-emerald-600/25");
+        navCartIcon.classList.add("text-amberwarm-400");
+        navCartIcon.classList.remove("text-white");
+        badge.classList.add("bg-amberwarm-400", "text-alpine-950");
+        badge.classList.remove("bg-white", "text-emerald-800");
+      }
+
+      if (cart.length === 0) {
+        clearBtn.classList.add("hidden");
+        checkoutSection.classList.add("hidden");
+        container.innerHTML = `
+          <div class="text-center py-12 px-4 bg-sand-50 rounded-2xl border border-dashed border-sand-200">
+            <svg class="w-12 h-12 text-alpine-700/40 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <p class="font-display text-lg font-bold text-alpine-900 mb-1">Your cart is empty</p>
+            <p class="text-xs text-alpine-700 mb-4">Explore our charcoal grill &amp; Gilgiti dishes and click "Order Now".</p>
+            <button onclick="closeCartDrawer()" class="px-5 py-2.5 rounded-xl bg-alpine-900 text-white text-xs font-semibold">
+              Browse Menu
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      clearBtn.classList.remove("hidden");
+      checkoutSection.classList.remove("hidden");
+      totalPriceEl.textContent = formatPKR(totalPrice);
+
+      container.innerHTML = cart
+        .map(
+          (item) => `
+          <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-sand-50 border border-sand-200">
+            <img
+              src="${item.image}"
+              onerror="this.src='https://placehold.co/120x120/1b312c/f5b942?text=Dish'"
+              alt="${item.title}"
+              class="w-16 h-16 rounded-xl object-cover shrink-0 bg-alpine-900"
+            />
+            <div class="flex-1 min-w-0">
+              <h5 class="text-sm font-bold text-alpine-950 truncate">${item.title}</h5>
+              <p class="text-xs font-semibold text-amberwarm-600 mt-0.5">${formatPKR(item.price)} each</p>
+              
+              <!-- Quantity Controls -->
+              <div class="flex items-center gap-2 mt-2">
+                <button
+                  type="button"
+                  onclick="updateCartQuantity('${item.id}', -1)"
+                  aria-label="Decrease quantity"
+                  class="w-7 h-7 rounded-lg bg-white border border-sand-200 hover:bg-sand-100 text-alpine-950 font-bold text-sm flex items-center justify-center"
+                >
+                  −
+                </button>
+                <span class="text-xs font-bold text-alpine-950 w-5 text-center">${item.quantity}</span>
+                <button
+                  type="button"
+                  onclick="updateCartQuantity('${item.id}', 1)"
+                  aria-label="Increase quantity"
+                  class="w-7 h-7 rounded-lg bg-white border border-sand-200 hover:bg-sand-100 text-alpine-950 font-bold text-sm flex items-center justify-center"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="text-right flex flex-col items-end justify-between self-stretch">
+              <button
+                type="button"
+                onclick="removeFromCart('${item.id}')"
+                aria-label="Remove item"
+                class="text-alpine-700/50 hover:text-red-600 p-1 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+              <span class="text-xs font-bold text-alpine-950">${formatPKR(item.price * item.quantity)}</span>
+            </div>
+          </div>
+        `
+        )
+        .join("");
+    }
+
+    /**
+     * CART DRAWER OPEN/CLOSE & CONDITIONAL DELIVERY/PICK UP TOGGLE
+     */
+    function openCartDrawer() {
+      const drawer = document.getElementById("cartDrawerBackdrop");
+      drawer.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      toggleOrderModeFields();
+    }
+
+    function closeCartDrawer() {
+      const drawer = document.getElementById("cartDrawerBackdrop");
+      drawer.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function toggleOrderModeFields() {
+      const selectedMode = document.querySelector('input[name="orderMode"]:checked').value;
+      const addressWrapper = document.getElementById("deliveryAddressWrapper");
+      const addressInput = document.getElementById("orderDeliveryAddress");
+      const pickupWrapper = document.getElementById("pickupTimingWrapper");
+      const pickupInput = document.getElementById("orderPickupTiming");
+
+      if (selectedMode === "Delivery") {
+        // Show Delivery Address, Hide Pick Up Timing
+        addressWrapper.classList.remove("hidden");
+        addressInput.required = true;
+
+        pickupWrapper.classList.add("hidden");
+        pickupInput.required = false;
+      } else {
+        // Pick Up Selected: Hide Address completely, Show Pick Up Timing
+        addressWrapper.classList.add("hidden");
+        addressInput.required = false;
+
+        pickupWrapper.classList.remove("hidden");
+        pickupInput.required = true;
+      }
+    }
+
+    /**
+     * SUBMIT FOOD ORDER VIA WHATSAPP
+     */
+    function submitFoodOrderWhatsApp(event) {
+      event.preventDefault();
+      if (cart.length === 0) return;
+
+      const userName = document.getElementById("orderUserName").value.trim();
+      const contactNumber = document.getElementById("orderContactNumber").value.trim();
+      const additionalNumber = document.getElementById("orderAdditionalNumber").value.trim();
+      const orderMode = document.querySelector('input[name="orderMode"]:checked').value;
+      const deliveryAddress = document.getElementById("orderDeliveryAddress").value.trim();
+      const pickupTiming = document.getElementById("orderPickupTiming").value.trim();
+
+      const totalBill = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      const itemsLines = cart
+        .map((item, index) => `${index + 1}. ${item.title} × ${item.quantity} = ${formatPKR(item.price * item.quantity)}`)
+        .join("\n");
+
+      let fulfillmentLine = "";
+      if (orderMode === "Delivery") {
+        fulfillmentLine = `🚚 *Order Type:* Delivery\n🏠 *Delivery Address:* ${deliveryAddress}`;
+      } else {
+        fulfillmentLine = `🛍️ *Order Type:* Pick Up\n⏰ *Pick Up Timing:* ${pickupTiming}`;
+      }
+
+      const message =
+        `*NEW FOOD ORDER — PARADISE GRILL*\n` +
+        `📍 River Road, Sonikot, Gilgit\n` +
+        `----------------------------------\n` +
+        `🍽️ *Order Items:*\n${itemsLines}\n` +
+        `----------------------------------\n` +
+        `💰 *Total Bill:* ${formatPKR(totalBill)}\n` +
+        `----------------------------------\n` +
+        `👤 *Customer Name:* ${userName}\n` +
+        `📞 *Contact Number:* ${contactNumber}\n` +
+        (additionalNumber ? `📱 *Additional Number:* ${additionalNumber}\n` : "") +
+        `${fulfillmentLine}\n\n` +
+        `Please confirm my order. Thank you!`;
+
+      const whatsappUrl = `https://wa.me/${HOTEL_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      closeCartDrawer();
+      showToast("Opening WhatsApp with your food order details...");
+    }
+
+    // Close modals/drawers when clicking outside on backdrop
+    const roomViewModalEl = document.getElementById("roomViewModal");
+    if (roomViewModalEl) {
+      roomViewModalEl.addEventListener("click", (e) => {
+        if (e.target.id === "roomViewModal") closeRoomViewModal();
+      });
+    }
+
+    const roomBookModalEl = document.getElementById("roomBookModal");
+    if (roomBookModalEl) {
+      roomBookModalEl.addEventListener("click", (e) => {
+        if (e.target.id === "roomBookModal") closeRoomBookModal();
+      });
+    }
+
+    const cartDrawerBackdropEl = document.getElementById("cartDrawerBackdrop");
+    if (cartDrawerBackdropEl) {
+      cartDrawerBackdropEl.addEventListener("click", (e) => {
+        if (e.target.id === "cartDrawerBackdrop") closeCartDrawer();
+      });
+    }
+  </script>
+</body>
+</html>
